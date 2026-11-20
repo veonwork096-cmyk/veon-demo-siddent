@@ -1,0 +1,30 @@
+---
+// Sticky header: logo → #top, 4 anchors, the phone number itself as the main element (concept: nav).
+// Mobile (< 64rem): logo, round call button, burger; the menu opens over the stone.
+import Logo from "./Logo.astro";
+import PhoneLink from "./PhoneLink.astro";
+import CallButton from "./CallButton.astro";
+import PhoneIcon from "./PhoneIcon.astro";
+import { clinic, nav } from "../data/clinic";
+---
+<header class="site-header" data-header>
+  <div class="site-header__inner">
+    <Logo class="site-header__logo" />
+    <a class="site-header__call-icon" href={clinic.phoneHref} aria-label={`Подзвонити ${clinic.phoneDisplay}`} data-rec="R-UX-02,SEO-R006,G-R006,M-R003"><PhoneIcon /></a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" data-burger>
+      <span class="burger__lines" aria-hidden="true"></span>
+      <span class="visually-hidden">Меню</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Розділи сторінки" data-nav data-rec="R-UX-05">
+      <ul class="site-nav__list">
+        {nav.map((item) => <li><a class="site-nav__link" href={item.href}>{item.label}</a></li>)}
+      </ul>
+      <div class="site-nav__call">
+        <p class="site-nav__label">Запис за телефоном</p>
+        <PhoneLink class="site-nav__phone" />
+        <CallButton wide />
+      </div>
+    </nav>
+    <PhoneLink class="site-header__phone" rec="R-UX-02,SEO-R006" />
+  </div>
+</header>

@@ -1,0 +1,7 @@
+---
+// The phone number set as type: itself a tel: link, underline grows on hover/focus.
+import { clinic } from "../data/clinic";
+interface Props { class?: string; rec?: string; }
+const { class: cls, rec } = Astro.props;
+---
+<a class:list={["phone-link", cls]} href={clinic.phoneHref} data-rec={rec}><span class="phone-link__digits">{clinic.phoneDisplay}</span></a>

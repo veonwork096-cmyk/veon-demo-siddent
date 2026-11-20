@@ -1,0 +1,207 @@
+---
+// Homepage of SID DENT — design/concept.md «Табличка на Швабській, 75». Sections: top, services, doctor, clinic, contacts.
+import { Picture } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import Header from "../components/Header.astro";
+import Tablet from "../components/Tablet.astro";
+import CallBar from "../components/CallBar.astro";
+import { clinic } from "../data/clinic";
+import "../styles/fonts.css";
+import "../styles/site.css";
+import "../styles/sections.css";
+import FutureLink from "../components/FutureLink.astro";
+import CallButton from "../components/CallButton.astro";
+import PhoneLink from "../components/PhoneLink.astro";
+import Footer from "../components/Footer.astro";
+import { services, extraServices, clinicPoints, FUTURE_NOTE } from "../data/clinic";
+import tablychka from "../assets/img/tablychka.jpg";
+import stepan from "../assets/img/stepan-fedak.jpg";
+import kabinet from "../assets/img/kabinet.jpg";
+import instrumenty from "../assets/img/instrumenty.jpg";
+import vkhid from "../assets/img/vkhid.jpg";
+
+// JSON-LD: only confirmed data (no openingHours — B-F031; no aggregateRating — third-party catalogue).
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: clinic.name,
+  description: "Стоматологічна клініка в Ужгороді: ортопедія, хірургія, імплантологія, терапія, ортодонтія, гігієна, дитяча стоматологія.",
+  image: tablychka.src,
+  telephone: "+380505412057",
+  email: clinic.email,
+  address: { "@type": "PostalAddress", streetAddress: "вул. Швабська, 75", addressLocality: "Ужгород", addressCountry: "UA" },
+  sameAs: [clinic.facebook, clinic.instagram],
+  founder: { "@type": "Person", name: clinic.doctor.name, jobTitle: clinic.doctor.role },
+};
+
+const title = "Стоматологія SID DENT в Ужгороді — вул. Швабська, 75 · 050 541 20 57";
+const description =
+  "Сімейна стоматологічна клініка на Радванці: лікування, протезування, імплантація, ортодонтія, гігієна, дитяча стоматологія. Запис за телефоном 050 541 20 57.";
+---
+<Base lang="uk" title={title} description={description}>
+  <Fragment slot="head">
+    <meta property="og:locale" content="uk_UA" data-rec="SEO-R002,SEO-R003" />
+    <meta property="og:type" content="website" />
+    <link rel="preload" href="/fonts/rubik-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin data-rec="R-SP-06,R-SP-07" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} data-rec="SEO-R007" />
+  </Fragment>
+
+  <Header slot="header" />
+
+  <Section id="top" class="hero" rec="R-UX-03,R-UX-10">
+    <div class="hero__text">
+      <h1 class="hero__title" data-rec="R-UX-11,SEO-R004">Стоматологія SID DENT <span class="keep">на Швабській, 75</span> <span class="keep">в Ужгороді</span></h1>
+      <p class="hero__lede">Ортопедія, хірургія, імплантологія, терапія, ортодонтія і гігієна для дорослих і дітей. Клініку заснував і очолює лікар {clinic.doctor.name}.</p>
+    </div>
+    <Tablet rec="R-UX-02,R-UX-03" />
+    <figure class="hero__photo" data-rec="R-SP-01,R-SP-05,R-SP-10,SEO-R010,G-R007,G-R011,R-SP-03,R-SP-08">
+      <Picture
+        src={tablychka}
+        formats={["webp"]}
+        widths={[600, 900, 1181]}
+        sizes="(min-width: 64rem) 74vw, 131vw"
+        alt="Скляна шестикутна табличка «Стоматологія SiD-Dent» із зубом-серцем на кам’яному фасаді клініки"
+        loading="eager"
+        fetchpriority="high"
+        class="hero__img"
+      />
+    </figure>
+  </Section>
+
+  <Section id="services" class="section services" rec="R-UX-06,R-UX-09">
+    <div class="container services__grid">
+      <div class="services__intro">
+        <h2 class="h2">Що лікуємо в SID DENT</h2>
+        <p class="services__note">Вартість лікування лікар називає після огляду — запитайте за телефоном.</p>
+        <div class="services__cta-desk"><CallButton label="Записатися за телефоном" rec="R-UX-04" /></div>
+      </div>
+      <ul class="services__list">
+        {services.map((item) => (
+          <li class="service">
+            <h3 class="service__title">{item.title}</h3>
+            <p class="service__text">{item.text}</p>
+            <FutureLink note={FUTURE_NOTE} class="service__more">Детальніше<span class="visually-hidden">: {item.title}</span></FutureLink>
+          </li>
+        ))}
+      </ul>
+      <div class="services__kids">
+        <h3 class="services__kids-title">Дитяча стоматологія <span class="services__kids-sub">— приймаємо дітей</span></h3>
+        <p class="services__also">Також: {extraServices.join(", ")}.</p>
+      </div>
+      <div class="services__cta">
+        <CallButton label="Записатися за телефоном" rec="R-UX-04" />
+      </div>
+    </div>
+  </Section>
+
+  <Section id="doctor" class="section doctor" rec="R-UX-07">
+    <div class="container doctor__grid">
+      <div class="doctor__head">
+        <h2 class="h2 doctor__title">Головний лікар&nbsp;— <span class="keep">{clinic.doctor.name}</span></h2>
+        <p class="doctor__role">{clinic.doctor.role}</p>
+      </div>
+      <figure class="doctor__photo" data-reveal>
+        <Picture
+          src={stepan}
+          formats={["webp"]}
+          widths={[400, 600, 800, 1200]}
+          sizes="(min-width: 64rem) 38vw, 100vw"
+          alt="Степан Федак, засновник і головний лікар стоматології SID DENT"
+          loading="lazy"
+          class="doctor__img"
+        />
+      </figure>
+      <div class="doctor__body">
+        <blockquote class="doctor__quote">
+          <p>Найбільше задоволення приносять моменти, коли я бачу обличчя наших відвідувачів, на яких знову з’являється посмішка.</p>
+        </blockquote>
+        <p class="doctor__story">Бути лікарем — це покликання, яке ти маєш відчувати серцем: розуміти пацієнтів і допомагати їм. SID DENT — клініка, з якої Степан Федак почав власну справу.</p>
+        <p class="slogan doctor__slogan">{clinic.slogan}</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="clinic" class="section clinic" rec="R-UX-07">
+    <div class="container clinic__grid">
+      <div class="clinic__photos">
+        <figure class="clinic__big" data-reveal>
+          <Picture
+            src={kabinet}
+            formats={["webp"]}
+            widths={[400, 560, 778]}
+            sizes="(min-width: 64rem) 560px, 100vw"
+            alt="Кабінет SID DENT: стоматологічна установка і бірюзове крісло"
+            loading="lazy"
+            class="clinic__img"
+          />
+        </figure>
+        <figure class="clinic__small" data-reveal style="--reveal-delay:120ms">
+          <Picture
+            src={instrumenty}
+            formats={["webp"]}
+            widths={[320, 640]}
+            sizes="(min-width: 48rem) 320px, 50vw"
+            alt="Наконечники стоматологічної установки крупним планом"
+            loading="lazy"
+            class="clinic__img"
+          />
+        </figure>
+      </div>
+      <div class="clinic__text">
+        <h2 class="h2">Клініка на Радванці</h2>
+        <p class="clinic__lede">Одна клініка на вулиці Швабській, 75 — повний цикл лікування від гігієни до імплантації, для дорослих і дітей.</p>
+        <dl class="clinic__points">
+          {clinicPoints.map((pt) => (
+            <div class="clinic__point">
+              <dt>{pt.title}</dt>
+              <dd>{pt.text}</dd>
+            </div>
+          ))}
+        </dl>
+        <p class="clinic__rating" data-rec="R-UX-07,G-R010,M-R004"><strong class="clinic__score">{clinic.rating.score}</strong> <span>— {clinic.rating.text}</span></p>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="contacts" class="section contacts" rec="R-UX-04">
+    <div class="container contacts__grid">
+      <div class="contacts__tablet">
+        <h2 class="h2 contacts__title">Як нас знайти</h2>
+        <address class="contacts__addr">
+          <span class="contacts__street">{clinic.street}</span>
+          <span class="contacts__city">{clinic.city}, район {clinic.district}</span>
+        </address>
+        <p class="contacts__label">Запис за телефоном</p>
+        <PhoneLink class="contacts__phone" rec="R-UX-02" />
+        <div class="contacts__actions">
+          <CallButton tone="inverse" />
+          <a class="btn btn--ghost-deep" href={clinic.mapHref} target="_blank" rel="noopener">Прокласти маршрут<span class="visually-hidden"> (Google Карти, нова вкладка)</span></a>
+        </div>
+        <p class="contacts__more">
+          <a class="link link--on-deep" href={clinic.facebook} target="_blank" rel="noopener" data-rec="R-UX-12">Facebook<span class="visually-hidden"> (нова вкладка)</span></a>
+          <a class="link link--on-deep" href={clinic.instagram} target="_blank" rel="noopener" data-rec="R-UX-12">Instagram<span class="visually-hidden"> (нова вкладка)</span></a>
+          <a class="link link--on-deep" href={`mailto:${clinic.email}`}>{clinic.email}</a>
+        </p>
+      </div>
+      <figure class="contacts__photo" data-reveal>
+        <Picture
+          src={vkhid}
+          formats={["webp"]}
+          widths={[420, 640, 840]}
+          sizes="(min-width: 64rem) 40vw, 100vw"
+          alt="Вхід до клініки на вул. Швабській, 75: кам’яний фасад і скляна табличка SiD-Dent"
+          loading="lazy"
+          class="contacts__img"
+        />
+      </figure>
+    </div>
+  </Section>
+
+  <Fragment slot="footer">
+    <Footer />
+    <CallBar />
+  </Fragment>
+</Base>
+
+<script src="../scripts/site.ts"></script>

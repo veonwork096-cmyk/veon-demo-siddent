@@ -1,0 +1,20 @@
+---
+// The "tablet" (signature): deep-teal plate with the phone number set as a sign.
+// variant="band" — full-width strip at the bottom of the first screen.
+import PhoneLink from "./PhoneLink.astro";
+import CallButton from "./CallButton.astro";
+import { clinic } from "../data/clinic";
+interface Props { rec?: string; }
+const { rec } = Astro.props;
+---
+<div class="band" data-band data-rec={rec}>
+  <div class="band__inner">
+    <p class="band__label">Запис за телефоном</p>
+    <PhoneLink class="band__phone" />
+    <CallButton tone="inverse" class="band__btn" />
+    <p class="band__addr">
+      <span class="band__street">{clinic.street}, {clinic.city}</span>
+      <a class="link link--on-deep" href={clinic.mapHref} target="_blank" rel="noopener">Прокласти маршрут<span class="visually-hidden"> (Google Карти, нова вкладка)</span></a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+/* Hallmark · theme: custom · idea: "Табличка на Швабській, 75: адреса, телефон і ім'я лікаря великими літерами на теплому камені фасаду" · vibe: "теплий камінь, спокійна вивіска, сімейна клініка" · job: book · paper: #FBF8F4 / stone #EBDDCB · accent: #006B75 (deep #0D4A50), heart #A3333B · faces: Rubik / Fira Sans · hero: фото таблички зліва в край вікна, H1 справа, внизу смуга-табличка з номером tel: на всю ширину · nav: логотип, 4 якорі, номер телефону як головний елемент замість кнопки · footer: світлий камінь, логотип і слоган, номер і адреса великим кеглем, FutureLink стовпцем · posture: committed · axes: light/rounded-sans/chromatic-teal · imagery: client photos · signature: номер телефону як вивіска тричі (герой, контакти, мобільна панель) · contrast: pass · fold: pass */
+/* Hallmark · waive 44c · tablet photo and H1 share one grid row, centres meet near y 418 at 1440 · concept.md hero: photo bleeds left, H1 right, the deep-teal phone band below carries the call action, so the split is the signature not a template */
+/* Hallmark · answered F4 · one call button in two tones for two grounds: teal on paper, stone on the deep-teal tablet band, as concept.md key components specify */
+/* Hallmark · waive 25 · .doctor__quote p holds one sentence of the founder quote · a single large sentence reads as a caption, 32ch keeps it to three or four lines beside the portrait */
+/* Hallmark · dismissed 49 · .callbar__btn already has white-space nowrap; the visible label is one word and the rest is screen-reader-only text */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: E (expression), the deep-teal phone band carries the page and repeats three times instead of decoration */
+/* Client design tokens — only from design/concept.md (veon-concept: colors, fonts). Breakpoints: 48rem (768 px), 64rem (1024 px). */
+:root {
+  /* colour roles (concept §8 «Дизайн-система для FULL») */
+  --color-bg: #FBF8F4;            /* paper */
+  --color-stone: #EBDDCB;         /* facade stone: hero, footer, highlights */
+  --color-wall: #E9E4DC;          /* doctor's photo wall */
+  --color-text: #2A211C;          /* ink */
+  --color-text-muted: #5E534B;
+  --color-accent: #006B75;        /* brand teal: buttons, links, focus on light */
+  --color-accent-hover: color-mix(in oklab, var(--color-accent) 92%, var(--color-text)); /* teal ~8 % darker */
+  --color-accent-ink: #FBF8F4;     /* text on teal (= paper) */
+  --color-accent-deep: #0D4A50;   /* the "tablet" surface */
+  --color-on-deep-muted: #C9B79F;
+  --color-heart: #A3333B;         /* brand red: slogan, active nav marker */
+  --color-stone-hover: color-mix(in oklab, var(--color-stone) 90%, var(--color-text)); /* inverse-button hover */
+
+  /* type */
+  --font-display: "Rubik", "Fira Sans", system-ui, sans-serif;
+  --font-body: "Fira Sans", system-ui, sans-serif;
+  --fs-display: clamp(2.125rem, 1.4rem + 3.6vw, 4.5rem);
+  --fs-phone: clamp(2rem, 1.2rem + 4.4vw, 5rem);
+  --fs-h2: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  --fs-h3: clamp(1.5rem, 1.3rem + 0.6vw, 1.875rem);
+  --fs-quote: clamp(1.375rem, 1.1rem + 1vw, 2rem);
+  --fs-lede: clamp(1.0625rem, 0.95rem + 0.5vw, 1.25rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-nav: 1.0625rem;
+  --fs-nav-phone: 1.375rem;
+  --lh-tight: 1.05;
+  --lh-head: 1.15;
+  --lh-body: 1.6;
+  --measure: 65ch;
+
+  /* spacing scale 4/8 */
+  --s-1: 0.25rem;  /* 4 */
+  --s-2: 0.5rem;   /* 8 */
+  --s-3: 0.75rem;  /* 12 */
+  --s-4: 1rem;     /* 16 */
+  --s-5: 1.5rem;   /* 24 */
+  --s-6: 2rem;     /* 32 */
+  --s-7: 3rem;     /* 48 */
+  --s-8: 4rem;     /* 64 */
+  --s-9: 6rem;     /* 96 */
+  --s-10: 8rem;    /* 128 */
+  --s-11: 10rem;   /* 160 */
+  --section-y: clamp(4rem, 2.5rem + 6vw, 9rem);
+  --section-y-lg: clamp(4.5rem, 2.5rem + 7.5vw, 10rem);
+
+  /* layout */
+  --space: clamp(1.25rem, 5vw, 7.5rem);   /* page gutter 20…120 */
+  --gap: clamp(1rem, 0.7rem + 1vw, 1.5rem);
+  --container: 1360px;
+  --header-h: 64px;
+  --tap: 44px;
+  --btn-h: 52px;
+
+  /* shape */
+  --radius: 14px;
+  --radius-photo: 20px;
+  --radius-field: 12px;
+  --ring: 3px;
+
+  /* motion */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur: 600ms;
+  --dur-fast: 200ms;
+  --dur-press: 120ms;
+  --dur-bar: 250ms;
+  --dur-reveal-hero: 700ms;
+}
+@media (min-width: 48rem) {
+  :root { --header-h: 80px; --btn-h: 48px; }
+}

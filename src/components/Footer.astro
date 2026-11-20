@@ -1,0 +1,32 @@
+---
+// Footer on light stone: logo + red slogan · number and address set large · FutureLink column + Facebook, Instagram.
+import Logo from "./Logo.astro";
+import PhoneLink from "./PhoneLink.astro";
+import FutureLink from "./FutureLink.astro";
+import { clinic, futurePages, FUTURE_NOTE } from "../data/clinic";
+---
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <Logo class="site-footer__logo" />
+      <p class="slogan site-footer__slogan">{clinic.slogan}</p>
+    </div>
+    <div class="site-footer__sign">
+      <p class="site-footer__label">Запис за телефоном</p>
+      <PhoneLink class="site-footer__phone" rec="SEO-R006" />
+      <p class="site-footer__addr">{clinic.street}, {clinic.city}</p>
+      <a class="link" href={`mailto:${clinic.email}`}>{clinic.email}</a>
+    </div>
+    <nav class="site-footer__nav" aria-label="Розділи сайту">
+      <ul class="site-footer__list">
+        {futurePages.map((p) => <li><FutureLink note={FUTURE_NOTE}>{p}</FutureLink></li>)}
+        <li><a class="link" href={clinic.facebook} target="_blank" rel="noopener" data-rec="R-UX-12,S-R003">Facebook<span class="visually-hidden"> (нова вкладка)</span></a></li>
+        <li><a class="link" href={clinic.instagram} target="_blank" rel="noopener" data-rec="R-UX-12,S-R003">Instagram<span class="visually-hidden"> (нова вкладка)</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container site-footer__bottom">
+    <p>© SID DENT, Ужгород</p>
+    <FutureLink note={FUTURE_NOTE}>Політика конфіденційності</FutureLink>
+  </div>
+</footer>

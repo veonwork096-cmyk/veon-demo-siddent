@@ -1,0 +1,11 @@
+---
+// The single call action: always tel:+380505412057. `tone="inverse"` = stone button on the deep-teal tablet.
+import PhoneIcon from "./PhoneIcon.astro";
+import { clinic } from "../data/clinic";
+interface Props { tone?: "primary" | "inverse"; label?: string; rec?: string; class?: string; wide?: boolean; }
+const { tone = "primary", label = "Подзвонити", rec, class: cls, wide = false } = Astro.props;
+---
+<a class:list={["btn", `btn--${tone}`, { "btn--wide": wide }, cls]} href={clinic.phoneHref} data-rec={rec}>
+  <PhoneIcon class="btn__icon" />
+  <span>{label}</span>
+</a>

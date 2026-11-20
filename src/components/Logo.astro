@@ -1,0 +1,11 @@
+---
+// Client logo (LOGO-site-new-gray.png): shadow removed, recoloured to ink, served as WebP. Links to the top of the page.
+import { Image } from "astro:assets";
+import logo from "../assets/img/logo-siddent.png";
+interface Props { class?: string; height?: number; }
+const { class: cls, height = 54 } = Astro.props;
+const width = Math.round((logo.width / logo.height) * height);
+---
+<a class:list={["logo", cls]} href="#top">
+  <Image src={logo} alt="SID DENT — стоматологічна клініка, на початок сторінки" width={width} height={height} densities={[1, 2]} format="webp" loading="eager" data-rec="R-SP-04" />
+</a>

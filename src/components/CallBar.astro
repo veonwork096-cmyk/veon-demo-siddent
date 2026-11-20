@@ -1,0 +1,9 @@
+---
+// Mobile bar < 48rem: «Подзвонити» + «Маршрут». Shown after the hero band leaves the screen, hidden over #contacts.
+import PhoneIcon from "./PhoneIcon.astro";
+import { clinic } from "../data/clinic";
+---
+<div class="callbar" data-callbar data-rec="R-UX-02,G-R006,M-R003">
+  <a class="btn btn--inverse callbar__btn" href={clinic.phoneHref}><PhoneIcon class="btn__icon" /><span>Подзвонити</span></a>
+  <a class="callbar__btn callbar__btn--route" href={clinic.mapHref} target="_blank" rel="noopener">Маршрут<span class="visually-hidden"> (Google Карти, нова вкладка)</span></a>
+</div>

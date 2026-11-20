@@ -1,0 +1,165 @@
+/* SID DENT — sections after the first screen. Tokens only. */
+
+/* ---------- shared ---------- */
+.slogan { font-family: var(--font-display); font-weight: 400; color: var(--color-heart); font-size: var(--fs-lede); }
+
+/* ---------- services ---------- */
+.services { background: var(--color-bg); }
+.services__grid { display: grid; gap: var(--s-7); }
+.services__note { margin-top: var(--s-4); color: var(--color-text-muted); max-width: 34ch; }
+.services__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-6); }
+.service__title { font-size: var(--fs-h3); line-height: 1.2; }
+.service__text { margin-top: var(--s-2); color: var(--color-text-muted); max-width: 46ch; }
+.service__more { margin-top: var(--s-1); font-size: var(--fs-small); }
+.services__kids {
+  background: var(--color-stone); border-radius: var(--radius-photo);
+  padding: var(--s-5) var(--s-5) var(--s-6);
+  display: grid; gap: var(--s-3);
+}
+.services__kids-title { font-size: var(--fs-h3); line-height: 1.2; }
+.services__kids-sub { color: var(--color-text-muted); font-weight: 400; }
+.services__also { color: var(--color-text-muted); }
+.services__cta .btn { width: 100%; }
+.services__cta-desk { display: none; }
+
+@media (min-width: 48rem) {
+  .services__list { grid-template-columns: 1fr 1fr; column-gap: var(--s-7); row-gap: var(--s-7); }
+  .services__cta .btn { width: auto; }
+  .services__kids { grid-template-columns: auto 1fr; align-items: baseline; column-gap: var(--s-7); padding: var(--s-6) var(--s-7); }
+}
+@media (min-width: 64rem) {
+  .services__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: var(--s-7);
+    grid-template-areas:
+      "intro intro intro intro list list list list list list list list"
+      "intro intro intro intro list list list list list list list list"
+      "kids kids kids kids kids kids kids kids kids kids kids kids";
+    grid-template-rows: auto auto auto;
+  }
+  .services__intro { grid-area: intro; position: sticky; top: calc(var(--header-h) + var(--s-6)); align-self: start; }
+  .services__cta-desk { display: block; margin-top: var(--s-6); }
+  .services__cta { display: none; }
+  .services__list { grid-area: list; }
+  .services__kids { grid-area: kids; }
+}
+
+/* ---------- doctor ---------- */
+.doctor { background: var(--color-wall); padding-block: var(--section-y-lg); }
+.doctor__grid { display: grid; gap: var(--s-6); grid-template-areas: "head" "photo" "body"; }
+.doctor__head { grid-area: head; }
+.doctor__role { margin-top: var(--s-3); color: var(--color-text-muted); font-size: var(--fs-lede); }
+.doctor__photo { grid-area: photo; margin: 0; max-width: 30rem; }
+.doctor__img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius-photo); }
+.doctor__body { grid-area: body; display: grid; gap: var(--s-5); align-content: start; }
+.doctor__quote { margin: 0; }
+.doctor__quote::before { content: ""; display: block; width: var(--s-3); height: var(--s-3); border-radius: 3px; background: var(--color-heart); margin-bottom: var(--s-4); }
+.doctor__quote p { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-quote); line-height: 1.35; max-width: 32ch; }
+.doctor__story { color: var(--color-text-muted); max-width: 52ch; }
+
+@media (min-width: 64rem) {
+  .doctor__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: var(--s-7);
+    grid-template-areas:
+      "photo photo photo photo photo . head head head head head head"
+      "photo photo photo photo photo . body body body body body body";
+    grid-template-rows: auto 1fr;
+  }
+  .doctor__photo { max-width: none; }
+  .doctor__head { align-self: end; padding-top: var(--s-8); }
+}
+
+/* ---------- clinic ---------- */
+.clinic { background: var(--color-bg); }
+.clinic__grid { display: grid; gap: var(--s-7); }
+.clinic__photos { display: grid; grid-template-columns: 1fr; }
+.clinic__big, .clinic__small { margin: 0; }
+.clinic__big { max-width: 35rem; }
+.clinic__img { display: block; width: 100%; height: auto; object-fit: cover; border-radius: var(--radius-photo); }
+.clinic__big .clinic__img { aspect-ratio: 778 / 889; }
+.clinic__small { width: min(50%, 20rem); justify-self: end; margin-top: calc(-1 * var(--s-9)); margin-right: var(--s-2); }
+.clinic__small .clinic__img { aspect-ratio: 1; outline: 6px solid var(--color-bg); }
+.clinic__lede { margin-top: var(--s-4); font-size: var(--fs-lede); color: var(--color-text-muted); max-width: 46ch; }
+.clinic__points { margin: var(--s-7) 0 0; display: grid; gap: var(--s-5); }
+.clinic__point dt { font-family: var(--font-display); font-weight: 500; font-size: var(--fs-lede); }
+.clinic__point dd { margin: var(--s-1) 0 0; color: var(--color-text-muted); }
+.clinic__rating {
+  margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--color-stone);
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-1) var(--s-4);
+  color: var(--color-text-muted); font-size: var(--fs-small);
+}
+.clinic__score { font-family: var(--font-display); font-weight: 500; font-size: var(--fs-h3); color: var(--color-text); }
+
+@media (min-width: 48rem) {
+  .clinic__points { grid-template-columns: 1fr 1fr; column-gap: var(--s-6); }
+}
+@media (min-width: 64rem) {
+  .clinic__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
+  .clinic__photos { grid-column: 1 / span 6; align-self: start; }
+  .clinic__text { grid-column: 8 / span 5; align-self: center; }
+  .clinic__small { margin-right: 0; }
+}
+
+/* ---------- contacts: the tablet at full size ---------- */
+.contacts { background: var(--color-bg); padding-top: 0; }
+.contacts__grid { display: grid; gap: var(--s-5); }
+.contacts__tablet {
+  background: var(--color-accent-deep); color: var(--color-bg);
+  border-radius: var(--radius-photo);
+  padding: var(--s-6) var(--s-4);
+  display: grid; gap: var(--s-4); align-content: start;
+}
+.contacts__title { color: var(--color-bg); }
+.contacts__addr { font-style: normal; display: grid; gap: var(--s-1); margin-top: var(--s-2); }
+.contacts__street { font-family: var(--font-display); font-weight: 500; font-size: var(--fs-h3); line-height: 1.2; }
+.contacts__city { color: var(--color-on-deep-muted); }
+.contacts__label { margin-top: var(--s-4); color: var(--color-on-deep-muted); font-size: var(--fs-small); }
+.contacts__phone { font-size: min(var(--fs-phone), 4.5rem); color: var(--color-bg); justify-self: start; }
+.contacts__phone:focus-visible { outline-color: var(--color-stone); }
+.contacts__actions { display: grid; gap: var(--s-3); margin-top: var(--s-2); }
+.contacts__actions .btn { width: 100%; }
+.contacts__more { display: flex; flex-wrap: wrap; column-gap: var(--s-6); margin-top: var(--s-2); overflow-wrap: anywhere; }
+.contacts__photo { margin: 0; }
+.contacts__img { display: block; width: 100%; height: auto; aspect-ratio: 840 / 845; object-fit: cover; border-radius: var(--radius-photo); }
+
+@media (min-width: 48rem) {
+  .contacts__tablet { padding: var(--s-7); }
+  .contacts__actions { grid-template-columns: 1fr 1fr; max-width: 34rem; }
+}
+@media (min-width: 64rem) {
+  .contacts__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
+  .contacts__tablet { grid-column: 1 / span 7; padding: var(--s-8); }
+  .contacts__photo { grid-column: 8 / span 5; position: relative; }
+  .contacts__photo picture { position: absolute; inset: 0; }
+  .contacts__img { height: 100%; aspect-ratio: auto; object-position: 30% 50%; }
+}
+
+/* ---------- footer ---------- */
+.site-footer { background: var(--color-stone); padding-block: var(--s-8) var(--s-6); }
+.site-footer__grid { display: grid; gap: var(--s-7); }
+.site-footer__brand { display: grid; gap: var(--s-4); justify-items: start; }
+.site-footer__logo { margin-right: 0; }
+.site-footer__label { color: var(--color-text-muted); font-size: var(--fs-small); }
+.site-footer__phone { font-size: var(--fs-h2); color: var(--color-text); }
+.site-footer__addr { font-family: var(--font-display); font-weight: 500; font-size: var(--fs-lede); margin-top: var(--s-2); }
+.site-footer__sign { display: grid; justify-items: start; }
+.site-footer__list { list-style: none; margin: 0; padding: 0; display: grid; justify-items: start; }
+.site-footer__bottom {
+  margin-top: var(--s-8); padding-top: var(--s-4); border-top: 1px solid var(--color-stone-hover);
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s-2) var(--s-6);
+  color: var(--color-text-muted); font-size: var(--fs-small);
+}
+@media (min-width: 64rem) {
+  .site-footer__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
+  .site-footer__brand { grid-column: 1 / span 4; }
+  .site-footer__sign { grid-column: 5 / span 5; }
+  .site-footer__nav { grid-column: 10 / span 3; }
+}
+
+/* ---------- motion 4: photos of the doctor, the clinic and the entrance surface once ---------- */
+[data-reveal] { --reveal-shift: 8px; }
+@media (min-width: 48rem) { [data-reveal] { --reveal-shift: 16px; } }
+.js [data-reveal]:not(.is-visible) { opacity: 0; transform: translateY(var(--reveal-shift)); }
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal]:not(.is-visible) { opacity: 1; transform: none; }
+}
+@media (max-width: 47.99rem) { [data-reveal] { --dur: 400ms; } }
