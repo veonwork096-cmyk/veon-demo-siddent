@@ -1,6 +1,7 @@
 ---
 // Homepage of SID DENT — design/concept.md «Табличка на Швабській, 75». Sections: top, services, doctor, clinic, contacts.
 import { Picture } from "astro:assets";
+import rubikCyrUrl from "../assets/fonts/rubik-cyrillic-wght-normal.woff2?url";
 import Base from "../layouts/Base.astro";
 import Section from "../components/Section.astro";
 import Header from "../components/Header.astro";
@@ -43,7 +44,7 @@ const description =
   <Fragment slot="head">
     <meta property="og:locale" content="uk_UA" data-rec="SEO-R002,SEO-R003" />
     <meta property="og:type" content="website" />
-    <link rel="preload" href="/fonts/rubik-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin data-rec="R-SP-06,R-SP-07" />
+    <link rel="preload" href={rubikCyrUrl} as="font" type="font/woff2" crossorigin data-rec="R-SP-06,R-SP-07" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} data-rec="SEO-R007" />
   </Fragment>
 
